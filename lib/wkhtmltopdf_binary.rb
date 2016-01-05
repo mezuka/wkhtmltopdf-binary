@@ -2,8 +2,6 @@ class WkhtmltopdfBinary
   def self.path
     @path ||= begin
       arch = case RUBY_PLATFORM
-        when /64.*linux/
-          'linux-amd64'
         when /linux/
           'linux-x86'
         when /darwin/
