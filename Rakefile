@@ -4,7 +4,7 @@ require 'rake/gempackagetask'
 
 spec = Gem::Specification.new do |s|
   s.name = "wkhtmltopdf-binary"
-  s.version = "0.9.9"
+  s.version = "0.12.2.1"
   s.author = "Mezuka LLC"
   s.email = "mezuka@mezuka.com"
   s.platform = Gem::Platform::RUBY
