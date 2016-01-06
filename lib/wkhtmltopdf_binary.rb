@@ -1,15 +1,14 @@
 class WkhtmltopdfBinary
   def self.path
     @path ||= begin
-      arch = case RUBY_PLATFORM
-        when /linux/
-          'linux-x86'
-        when /darwin/
-          'darwin-x86'
-        else
-          raise "Invalid platform. Must be running linux or intel-based Mac OS."
+      cpu, os = RUBY_PLATFORM.split('-', 2)
+      if os != 'linux' && os != 'darwin'
+        raise "Invalid platform. Must be running linux or intel-based Mac OS."
       end
-      File.expand_path "#{File.dirname(__FILE__)}/../libexec/wkhtmltopdf-#{arch}"
+      path = "#{File.dirname(__FILE__)}/../libexec/"
+      cpu = 'x86' if cpu != 'x86' && !File.file?("#{path}wkhtmltopdf-#{os}-#{cpu}")
+      File.expand_path "#{path}wkhtmltopdf-#{os}-#{cpu}"
     end
   end
 end
+
