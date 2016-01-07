@@ -10,9 +10,9 @@ class WkhtmltopdfBinary
       else
         raise "Invalid platform. Must be running linux or intel-based Mac OS."
       end
-      path = "#{File.dirname(__FILE__)}/../libexec/"
-      cpu = 'x86' if cpu != 'x86' && !File.file?("#{path}wkhtmltopdf-#{os}-#{cpu}")
-      File.expand_path "#{path}wkhtmltopdf-#{os}-#{cpu}"
+      path = File.join(File.dirname(__FILE__), '..', 'libexec')
+      cpu = 'x86' if cpu != 'x86' && !File.file?(File.join(path, "wkhtmltopdf-#{os}-#{cpu}"))
+      File.expand_path(File.join(path, "wkhtmltopdf-#{os}-#{cpu}"))
     end
   end
 end
