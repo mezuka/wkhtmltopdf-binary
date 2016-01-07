@@ -2,6 +2,14 @@ require 'minitest/autorun'
 require 'wkhtmltopdf_binary'
 
 class WkhtmltopdfBinaryTest < Minitest::Test
+  def test_returning_full_path
+    set_platform('x86_64-darwin15.0') do
+      assert_equal(WkhtmltopdfBinary.path,
+        File.expand_path(
+          File.join(File.dirname(__FILE__), '..', 'libexec', 'wkhtmltopdf-darwin-x86')))
+    end
+  end
+
   def test_with_known_arch_and_os
     set_platform('x86_64-linux') do
       assert_equal File.basename(WkhtmltopdfBinary.path), 'wkhtmltopdf-linux-x86_64'
