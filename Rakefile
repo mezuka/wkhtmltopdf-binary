@@ -1,6 +1,6 @@
 require 'rubygems'
-require 'rake/packagetask'
-require 'rake/gempackagetask'
+require 'rubygems/package_task'
+require 'rake/testtask'
 
 spec = Gem::Specification.new do |s|
   s.name = "wkhtmltopdf-binary"
@@ -14,6 +14,10 @@ spec = Gem::Specification.new do |s|
   s.require_path = '.'
 end
 
-Rake::GemPackageTask.new(spec) do |pkg|
+Gem::PackageTask.new(spec) do |pkg|
   pkg.need_tar = true
+end
+
+Rake::TestTask.new do |t|
+  t.libs << 'test'
 end
